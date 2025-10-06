@@ -1,5 +1,7 @@
 package ktour;
 
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
@@ -66,8 +68,14 @@ public class KnightsTourVC {
         gc.fillRect(x+stroke, y+stroke, size - (stroke*2), size - (stroke*2));
     }
 
+    public void drawMoves(ArrayList<Location> locs, int xoffset, int yoffset) {
+        for(Location current: locs) {
+            drawSingleSquare((current.getCol()*50) + xoffset, (current.getRow()*50) + yoffset, 50, 2, Color.BLUE);
+        }
+    }
+
     //draws the chessboard
-    public void draw() {
+    public void draw(Location current, ArrayList<Location> locs, int board[][]) {
         int xoffset = 20;
         int yoffset = 50;
         //make a double for loop to make a chess board out of these squares
@@ -84,6 +92,7 @@ public class KnightsTourVC {
                 }
             }
         }
+        drawMoves(locs, xoffset, yoffset);
         
     }
 

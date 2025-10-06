@@ -38,11 +38,25 @@ public class Location implements Comparable<Location>{
     }
 
     @Override
+    public boolean equals(Object other) {
+        if(other instanceof Location) {
+            return equals((Location)other);
+        }
+        else {
+            return false;
+        }
+    }
+
+    @Override
     public int compareTo(Location other) {
         if(this.equals(other)) {
             return 0;
         }
         return this.row - other.row;
     }
-    
+
+    @Override
+    public int hashCode() {
+        return row * 10 + col;
+    }
 }
